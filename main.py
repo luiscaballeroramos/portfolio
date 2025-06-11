@@ -5,6 +5,6 @@ st.title("PortfolioLuis Caballero Ramos")
 st.write("select an app to run")
 col1, col2 = st.columns(2)
 with col1:
-    st.page_link("app_multiply.py", label="Multiply")
+    st.page_link("pages/app_multiply.py", label="Multiply")
 with col2:
-    st.page_link("app_2.py", label="None")
+    st.page_link("pages/app_2.py", label="None")
