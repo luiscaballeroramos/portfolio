@@ -1,0 +1,15 @@
+[project]
+name = "management"
+version = "0.1.0"
+description = "Management and checking tools"
+authors = [{ name = "Tu Nombre", email = "tu@email.com" }]
+readme = "README.md"
+requires-python = ">=3.8"
+
+dependencies = [
+    "codedev @ git+https://github.com/luiscaballeroramos/code.git"
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
