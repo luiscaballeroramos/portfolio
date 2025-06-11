@@ -7,4 +7,4 @@ col1, col2 = st.columns(2)
 with col1:
     st.page_link("app_multiply.py", label="Multiply")
 with col2:
-    st.page_link("pages/2_App_Modelo.py", label="None")
+    st.page_link("app_2.py", label="None")
