@@ -1,5 +1,5 @@
 import streamlit as st
-from operaciones import duplicar
+from lcr_code.operaciones import duplicar
 
 # Slider de 0 a 100
 valor = st.slider("Selecciona un valor", min_value=0, max_value=100, value=50)
@@ -8,4 +8,4 @@ valor = st.slider("Selecciona un valor", min_value=0, max_value=100, value=50)
 resultado = duplicar(valor)
 
 # Mostrar el resultado en un cuadro de texto
-st.text_input("Resultado (valor * 2)", value=str(resultado), disabled=True)
+st.text_input("Resultado (valor / 2)", value=str(resultado), disabled=True)

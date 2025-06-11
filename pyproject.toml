@@ -7,7 +7,8 @@ readme = "README.md"
 requires-python = ">=3.8"
 
 dependencies = [
-    "codedev @ git+https://github.com/luiscaballeroramos/code.git"
+    "streamlit==1.45.1",
+    "lcr_code @ git+https://github.com/luiscaballeroramos/lcr_code.git"
 ]
 
 [build-system]
