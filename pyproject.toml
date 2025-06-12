@@ -1,5 +1,5 @@
 [project]
-name = "lcr_portfolio"
+name = "portfolio"
 version = "0.1.0"
 description = "Portfolio of tools developed by Luis Caballero Ramos"    
 authors = [{ name = "Luis Caballero Ramos", email = "luiscaballeroramos@gmail.com" }]
