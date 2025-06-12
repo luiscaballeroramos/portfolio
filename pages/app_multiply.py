@@ -8,4 +8,4 @@ valor = st.slider("Selecciona un valor", min_value=0, max_value=100, value=50)
 resultado = duplicar(valor)
 
 # Mostrar el resultado en un cuadro de texto
-st.text_input("Resultado (valor * 5)", value=str(resultado), disabled=True)
+st.text_input("Resultado (valor * 10)", value=str(resultado), disabled=True)
