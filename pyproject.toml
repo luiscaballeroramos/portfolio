@@ -10,6 +10,7 @@ dependencies = [
     "streamlit==1.45.1",
     "matplotlib>=3.5",
     "numpy>=1.21",
+    "lcr_code @ git+https://github.com/luiscaballeroramos/lcr_code.git",
 ]
 
 [build-system]
