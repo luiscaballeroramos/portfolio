@@ -1,4 +1,6 @@
 import streamlit as st
+from lcr_code_loader import ensure_lcr_code
+lcr_code = ensure_lcr_code()
 from lcr_code.operaciones import duplicar
 
 # Slider de 0 a 100
