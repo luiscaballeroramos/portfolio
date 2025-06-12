@@ -1,0 +1,5 @@
+[server]
+enableCORS = false
+
+[git]
+    # Esto es un ejemplo para inyectar el token en las URLs de git, NO es oficial en Streamlit Cloud
