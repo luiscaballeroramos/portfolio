@@ -1,14 +1,14 @@
 [project]
-name = "management"
+name = "lcr_portfolio"
 version = "0.1.0"
-description = "Management and checking tools"
-authors = [{ name = "Tu Nombre", email = "tu@email.com" }]
+description = "Portfolio of tools developed by Luis Caballero Ramos"    
+authors = [{ name = "Luis Caballero Ramos", email = "luiscaballeroramos@gmail.com" }]
 readme = "README.md"
 requires-python = ">=3.8"
 
 dependencies = [
     "streamlit==1.45.1",
-    "lcr_code @ git+https://github.com/luiscaballeroramos/lcr_code.git"
+    #"lcr_code @ git+https://github.com/luiscaballeroramos/lcr_code.git"
 ]
 
 [build-system]
