@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "postBuild": "bash setup.sh"
+  }
+}
