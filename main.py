@@ -4,7 +4,7 @@ import sys
 import requests
 
 # Leer token desde secrets
-token = st.secrets["github"]["GITHUB_TOKEN"]
+token = st.secrets["GITHUB_TOKEN"]
 
 # Instalar repo privado si no está presente
 repo_url = f"https://{token}@github.com/luiscaballeroramos/lcr_code.git"
