@@ -1,7 +1,4 @@
 import streamlit as st
-import subprocess
-import sys
-import requests
 
 st.set_page_config(page_title="main", layout="centered")
 st.title("Portfolio Luis Caballero Ramos")
