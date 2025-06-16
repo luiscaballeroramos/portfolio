@@ -1,3 +1,5 @@
+import install_private_packages
+
 import streamlit as st
 
 st.set_page_config(page_title="main", layout="centered")
