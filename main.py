@@ -33,8 +33,10 @@ st.write("Select an app to run")
 col1, col2 = st.columns(2)
 with col1:
     st.page_link("pages/app_beam_forces.py", label="Beam Forces Calculator")
+    st.page_link("pages/app_steel_section.py", label="Steel Section Calculator")
 with col2:
     st.markdown("More apps (Coming Soon)")
+
 st.markdown("---")
 st.subheader("🔗 Stay Connected")
 st.markdown(
