@@ -1,8 +1,11 @@
 import streamlit as st
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
-from lcr_code.steel_calculation.steelprofilesection import profiles
-from lcr_code.steel_calculation.profileproperties import propiedades_ipe
+
+# from lcr_code.steel_calculation.steelprofilesection import profiles
+# from lcr_code.steel_calculation.profileproperties import propiedades_ipe
+from steel_calculation.profileproperties import propiedades_ipe
+from steel_calculation.steelprofilesection import profiles
 
 
 st.title("Selector de perfiles metálicos")
@@ -15,9 +18,9 @@ subtipo = st.selectbox("Subtipo de perfil", list(profiles[tipo].keys()))
 
 # Mostrar dimensiones
 dim = profiles[tipo][subtipo]
-st.write(f"Dimensiones del perfil {subtipo}:")
-for k, v in dim.items():
-    st.write(f"{k} = {v} mm")
+st.write(dim)
+st.subheader("Dimensiones")
+st.table({k: [v] for k, v in dim.items()})
 
 
 def draw_ipe(h, b, tw, tf, r, r1):
@@ -90,8 +93,14 @@ def draw_ipe(h, b, tw, tf, r, r1):
 
 
 if tipo == "I":
-    fig = draw_ipe(dim["h"], dim["b"], dim["tw"], dim["tf"], dim["r"], dim["r1"])
+    r = dim.get("r", 0)
+    r1 = dim.get("r1", 0)
+    fig = draw_ipe(dim["h"], dim["b"], dim["tw"], dim["tf"], r, r1)
     st.pyplot(fig)
+elif tipo == "U":
+    st.warning("Dibujo para perfil UPN aún no implementado.")
+elif tipo == "L":
+    st.warning("Dibujo para perfil ángulo aún no implementado.")
 else:
     st.write("Dibujo no disponible para este tipo aún.")
 
