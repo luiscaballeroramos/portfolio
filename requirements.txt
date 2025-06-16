@@ -1,4 +1,4 @@
 streamlit
 python-dotenv
-# git+https://$GITHUB_TOKEN@github.com/$GITHUB_USER/private-repo.git#egg=private_module
-
+matplotlib
+numpy
