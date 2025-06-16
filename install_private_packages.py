@@ -4,7 +4,7 @@ import subprocess
 from dotenv import load_dotenv
 
 TOKENS = {"lcr_code": ("GITHUB_TOKEN", "GITHUB_USER")}
-PACKAGES_MODULES = {"lcr_code": ["lcr_code", "steel_calculation"]}
+PACKAGES_MODULES = {"lcr_code": ["lcr-code"]}
 # Load environment variables
 load_dotenv()
 # local installation directory
