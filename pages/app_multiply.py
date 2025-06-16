@@ -1,7 +1,7 @@
 import streamlit as st
 import matplotlib.pyplot as plt
-from steel_calculation.steelprofilesection import profiles
-from steel_calculation.profileproperties import propiedades_ipe
+from lcr_code.steel_calculation.steelprofilesection import profiles
+from lcr_code.steel_calculation.profileproperties import propiedades_ipe
 
 
 st.title("Selector de perfiles metálicos")
