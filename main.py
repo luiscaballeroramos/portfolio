@@ -30,11 +30,11 @@ st.markdown(
 
 st.title("Portfolio Luis Caballero Ramos\n🚧 Portfolio Under Construction")
 st.write("Select an app to run")
-col1 = st.columns(1)  # col1, col2 = st.columns(2)
+col1, col2 = st.columns(2)
 with col1:
-    #     st.page_link("pages/app_multiply.py", label="Squared Root Calculator")
-    # with col2:
     st.page_link("pages/app_beam_forces.py", label="Beam Forces Calculator")
+with col2:
+    st.label("More apps (Coming Soon)")
 st.markdown("---")
 st.subheader("🔗 Stay Connected")
 st.markdown(
