@@ -25,8 +25,8 @@ with col2:
     st.subheader("Propiedades")
     if tipo == "I":
         A, Ixx = propiedades_ipe(dim["h"], dim["b"], dim["tw"], dim["tf"])
-        st.write(f"Área: {A:.1f} mm²")
-        st.write(f"Momento de inercia Ixx: {Ixx:.1f} mm⁴")
+        st.write(f"A: {A:.1f} mm²")
+        st.write(f"Ixx: {Ixx:.1f} mm⁴")
 
 
 def draw_ipe(h, b, tw, tf, r):
