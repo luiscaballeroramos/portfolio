@@ -35,24 +35,21 @@ Vn = V / P
 Mn = M / (P * L)
 
 # Plotting
-fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 6), sharex=True)
-
+fig, ax = plt.subplots(figsize=(10, 6), sharex=True)
 # Cortante
-ax1.plot(x, Vn, label="Cortante V(x)/P", color="orange")
-ax1.axvline(a, color="gray", linestyle="--")
-ax1.tick_params(axis="y", which="both", left=False, labelleft=False)
-# ax1.set_ylabel("Cortante normalizado")
-# ax1.grid(True)
-# ax1.legend()
-
+ax.plot(x, Vn, label="Cortante V(x)/P", color="orange")
 # Momento
-ax2.plot(x, Mn, label="Momento M(x)/(P·L)", color="blue")
-ax2.axvline(a, color="gray", linestyle="--")
-ax2.tick_params(axis="y", which="both", left=False, labelleft=False)
-# ax2.set_xlabel("x [m]")
-# ax2.set_ylabel("Momento normalizado")
-# ax2.grid(True)
-# ax2.legend()
+ax.plot(x, Mn, label="Momento M(x)/(P·L)", color="blue")
+# Línea vertical en x = a
+ax.axvline(a, color="gray", linestyle="--")
+# Línea horizontal en y = 0
+ax.axhline(0, color="black", linestyle="--", linewidth=0.8)
+# Ejes y etiquetas
+ax.set_xlabel("x [m]")
+# ax.set_ylabel("Valor normalizado")
+# ax.grid(True
+ax.legend()
+
 
 # Mostrar gráfico
 st.pyplot(fig)
