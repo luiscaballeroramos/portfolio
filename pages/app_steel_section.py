@@ -22,6 +22,11 @@ with col2:
     st.subheader("Dimensiones")
     for k, v in dim.items():
         st.text(f"{str(k).rjust(20)}: {v}")
+    st.subheader("Propiedades")
+    if tipo == "I":
+        A, Ixx = propiedades_ipe(dim["h"], dim["b"], dim["tw"], dim["tf"])
+        st.write(f"Área: {A:.1f} mm²")
+        st.write(f"Momento de inercia Ixx: {Ixx:.1f} mm⁴")
 
 
 def draw_ipe(h, b, tw, tf, r):
@@ -129,8 +134,3 @@ with col3:
         st.warning("Dibujo para perfil ángulo aún no implementado.")
     else:
         st.write("Dibujo no disponible para este tipo aún.")
-
-    if tipo == "I":
-        A, Ixx = propiedades_ipe(dim["h"], dim["b"], dim["tw"], dim["tf"])
-        st.write(f"Área: {A:.1f} mm²")
-        st.write(f"Momento de inercia Ixx: {Ixx:.1f} mm⁴")
