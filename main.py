@@ -28,7 +28,8 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-st.title("Portfolio Luis Caballero Ramos\n🚧 Portfolio Under Construction")
+st.title("Portfolio Luis Caballero Ramos")
+st.title("🚧 under construction🚧")
 st.write("Select an app to run")
 col1, col2 = st.columns(2)
 with col1:
