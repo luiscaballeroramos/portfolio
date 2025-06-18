@@ -39,18 +39,20 @@ fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 6), sharex=True)
 
 # Cortante
 ax1.plot(x, Vn, label="Cortante V(x)/P", color="orange")
-ax1.axvline(a, color="gray", linestyle="--", label="Carga puntual")
-ax1.set_ylabel("Cortante normalizado")
-ax1.grid(True)
-ax1.legend()
+ax1.axvline(a, color="gray", linestyle="--")
+ax1.tick_params(axis="y", which="both", left=False, labelleft=False)
+# ax1.set_ylabel("Cortante normalizado")
+# ax1.grid(True)
+# ax1.legend()
 
 # Momento
 ax2.plot(x, Mn, label="Momento M(x)/(P·L)", color="blue")
 ax2.axvline(a, color="gray", linestyle="--")
-ax2.set_xlabel("x [m]")
-ax2.set_ylabel("Momento normalizado")
-ax2.grid(True)
-ax2.legend()
+ax2.tick_params(axis="y", which="both", left=False, labelleft=False)
+# ax2.set_xlabel("x [m]")
+# ax2.set_ylabel("Momento normalizado")
+# ax2.grid(True)
+# ax2.legend()
 
 # Mostrar gráfico
 st.pyplot(fig)
