@@ -30,13 +30,28 @@ st.markdown(
 
 st.title("Portfolio Luis Caballero Ramos")
 st.title("🚧 under construction🚧")
-st.write("Select an app to run")
+st.write(
+    "<div style='text-align: center;'>Select an app to run</div>",
+    unsafe_allow_html=True,
+)
+st.markdown("---")
 col1, col2 = st.columns(2)
 with col1:
-    st.page_link("pages/app_beam_forces.py", label="Beam Forces Calculator")
-    st.page_link("pages/app_steel_section.py", label="Steel Section Calculator")
+    st.page_link(
+        "pages/app_beam_forces.py",
+        label="Beam Forces Calculator",
+        use_container_width=True,
+    )
+    st.page_link(
+        "pages/app_steel_section.py",
+        label="Steel Section Calculator",
+        use_container_width=True,
+    )
 with col2:
-    st.markdown("More apps (Coming Soon)")
+    st.markdown(
+        "<div style='text-align: center;'>More apps (Coming Soon)</div>",
+        unsafe_allow_html=True,
+    )
 
 st.markdown("---")
 st.subheader("🔗 Stay Connected")

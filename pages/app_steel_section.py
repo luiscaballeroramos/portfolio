@@ -11,80 +11,106 @@ from steel_calculation.steelprofilesection import profiles
 st.title("Selector de perfiles metálicos")
 
 # Desplegable tipo de perfil
-tipo = st.selectbox("Tipo de perfil", list(profiles.keys()))
+col1, col2 = st.columns(2)
+with col1:
+    tipo = st.selectbox("Tipo de perfil", list(profiles.keys()))
+    # Desplegable subtipo basado en tipo seleccionado
+    subtipo = st.selectbox("Subtipo de perfil", list(profiles[tipo].keys()))
+with col2:
+    # Mostrar dimensiones en formato lista, sin alineación especial
+    dim = profiles[tipo][subtipo]
+    st.subheader("Dimensiones")
+    for k, v in dim.items():
+        st.text(f"{str(k).rjust(20)}: {v}")
 
-# Desplegable subtipo basado en tipo seleccionado
-subtipo = st.selectbox("Subtipo de perfil", list(profiles[tipo].keys()))
 
-# Mostrar dimensiones
-dim = profiles[tipo][subtipo]
-st.write(dim)
-st.subheader("Dimensiones")
-st.table({k: [v] for k, v in dim.items()})
-
-
-def draw_ipe(h, b, tw, tf, r, r1):
+def draw_ipe(h, b, tw, tf, r):
     fig, ax = plt.subplots()
     color = "lightgrey"
-
-    # Alma
-    ax.add_patch(plt.Rectangle((b / 2 - tw / 2, r), tw, h - 2 * r, color=color))
-
-    # Alas
+    # web
     ax.add_patch(
-        plt.Rectangle((0, h - tf), b, tf - r1, color=color)
-    )  # ala superior sin redondeo
+        plt.Rectangle(
+            (b / 2 - tw / 2, tf), tw, h - 2 * tf, facecolor=color, edgecolor="none"
+        )
+    )
+    # flanges
+    ax.add_patch(plt.Rectangle((0, 0), b, tf, facecolor=color, edgecolor="none"))
+    ax.add_patch(plt.Rectangle((0, h - tf), b, tf, facecolor=color, edgecolor="none"))
+    # radius corners
+    # bottom left
     ax.add_patch(
-        plt.Rectangle((0, 0 + r1), b, tf - r1, color=color)
-    )  # ala inferior sin redondeo
-
-    # Radios internos (esquinas entre alma y ala)
+        plt.Rectangle((b / 2 - tw / 2 - r, tf), r, r, facecolor=color, edgecolor="none")
+    )
     ax.add_patch(
-        patches.Arc(
-            (b / 2 - tw / 2, tf), 2 * r, 2 * r, theta1=180, theta2=270, color=color
+        patches.Wedge(
+            center=(b / 2 - tw / 2 - r, tf + r),
+            r=r,
+            theta1=0,
+            theta2=360,
+            facecolor="white",
+            edgecolor="none",
+        )
+    )
+    # bottom right
+    ax.add_patch(
+        plt.Rectangle((b / 2 + tw / 2, tf), r, r, facecolor=color, edgecolor="none")
+    )
+    ax.add_patch(
+        patches.Wedge(
+            center=(b / 2 + tw / 2 + r, tf + r),
+            r=r,
+            theta1=0,
+            theta2=360,
+            facecolor="white",
+            edgecolor="none",
+        )
+    )
+    # top left
+    ax.add_patch(
+        plt.Rectangle(
+            (b / 2 - tw / 2 - r, h - tf - r), r, r, facecolor=color, edgecolor="none"
         )
     )
     ax.add_patch(
-        patches.Arc(
-            (b / 2 + tw / 2, tf), 2 * r, 2 * r, theta1=270, theta2=360, color=color
+        patches.Wedge(
+            center=(b / 2 - tw / 2 - r, h - tf - r),
+            r=r,
+            theta1=0,
+            theta2=360,
+            facecolor="white",
+            edgecolor="none",
+        )
+    )
+    # top right
+    ax.add_patch(
+        plt.Rectangle(
+            (b / 2 + tw / 2, h - tf - r), r, r, facecolor=color, edgecolor="none"
         )
     )
     ax.add_patch(
-        patches.Arc(
-            (b / 2 - tw / 2, h - tf), 2 * r, 2 * r, theta1=90, theta2=180, color=color
+        patches.Wedge(
+            center=(b / 2 + tw / 2 + r, h - tf - r),
+            r=r,
+            theta1=0,
+            theta2=360,
+            facecolor="white",
+            edgecolor="none",
         )
-    )
-    ax.add_patch(
-        patches.Arc(
-            (b / 2 + tw / 2, h - tf), 2 * r, 2 * r, theta1=0, theta2=90, color=color
-        )
-    )
-
-    # Radios externos (en las esquinas de las alas)
-    ax.add_patch(
-        patches.Arc((0, r1), 2 * r1, 2 * r1, theta1=180, theta2=270, color=color)
-    )
-    ax.add_patch(
-        patches.Arc((b, r1), 2 * r1, 2 * r1, theta1=270, theta2=360, color=color)
-    )
-    ax.add_patch(
-        patches.Arc((0, h - r1), 2 * r1, 2 * r1, theta1=90, theta2=180, color=color)
-    )
-    ax.add_patch(
-        patches.Arc((b, h - r1), 2 * r1, 2 * r1, theta1=0, theta2=90, color=color)
     )
 
     # Cotas básicas
     ax.annotate(
-        f"h={h}mm",
-        xy=(b, h / 2),
-        xytext=(b + 10, h / 2),
-        arrowprops=dict(arrowstyle="->"),
+        f"h={h}mm\ntw={tw}mm",
+        xy=(b / 2 + tw, h / 2),
+        # xytext=(b + 10, h / 2),
+        # arrowprops=dict(arrowstyle="-["),
     )
     ax.annotate(
-        f"b={b}mm", xy=(b / 2, 0), xytext=(b / 2, -10), arrowprops=dict(arrowstyle="->")
+        f"b={b}mm\ntw={tw}mm",
+        xy=(0, tf),
+        # xytext=(b / 2, -10),
+        # arrowprops=dict(arrowstyle="->"),
     )
-
     ax.set_xlim(-20, b + 30)
     ax.set_ylim(-20, h + 20)
     ax.set_aspect("equal")
@@ -94,8 +120,7 @@ def draw_ipe(h, b, tw, tf, r, r1):
 
 if tipo == "I":
     r = dim.get("r", 0)
-    r1 = dim.get("r1", 0)
-    fig = draw_ipe(dim["h"], dim["b"], dim["tw"], dim["tf"], r, r1)
+    fig = draw_ipe(dim["h"], dim["b"], dim["tw"], dim["tf"], r)
     st.pyplot(fig)
 elif tipo == "U":
     st.warning("Dibujo para perfil UPN aún no implementado.")
