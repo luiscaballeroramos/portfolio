@@ -11,7 +11,7 @@ from steel_calculation.steelprofilesection import profiles
 st.title("Selector de perfiles metálicos")
 
 # Desplegable tipo de perfil
-col1, col2 = st.columns(2)
+col1, col2, col3 = st.columns(3)
 with col1:
     tipo = st.selectbox("Tipo de perfil", list(profiles.keys()))
     # Desplegable subtipo basado en tipo seleccionado
@@ -118,19 +118,19 @@ def draw_ipe(h, b, tw, tf, r):
     return fig
 
 
-if tipo == "I":
-    r = dim.get("r", 0)
-    fig = draw_ipe(dim["h"], dim["b"], dim["tw"], dim["tf"], r)
-    st.pyplot(fig)
-elif tipo == "U":
-    st.warning("Dibujo para perfil UPN aún no implementado.")
-elif tipo == "L":
-    st.warning("Dibujo para perfil ángulo aún no implementado.")
-else:
-    st.write("Dibujo no disponible para este tipo aún.")
+with col3:
+    if tipo == "I":
+        r = dim.get("r", 0)
+        fig = draw_ipe(dim["h"], dim["b"], dim["tw"], dim["tf"], r)
+        st.pyplot(fig)
+    elif tipo == "U":
+        st.warning("Dibujo para perfil UPN aún no implementado.")
+    elif tipo == "L":
+        st.warning("Dibujo para perfil ángulo aún no implementado.")
+    else:
+        st.write("Dibujo no disponible para este tipo aún.")
 
-
-if tipo == "I":
-    A, Ixx = propiedades_ipe(dim["h"], dim["b"], dim["tw"], dim["tf"])
-    st.write(f"Área: {A:.1f} mm²")
-    st.write(f"Momento de inercia Ixx: {Ixx:.1f} mm⁴")
+    if tipo == "I":
+        A, Ixx = propiedades_ipe(dim["h"], dim["b"], dim["tw"], dim["tf"])
+        st.write(f"Área: {A:.1f} mm²")
+        st.write(f"Momento de inercia Ixx: {Ixx:.1f} mm⁴")
