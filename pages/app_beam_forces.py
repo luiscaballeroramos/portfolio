@@ -7,7 +7,7 @@ st.set_page_config(page_title="Esfuerzos en Viga Biapoyada", layout="wide")
 st.title("🧱 Viga Biapoyada con Carga Puntual Variable")
 
 # Parámetros de la viga
-L = 10.0  # Longitud de la viga (m)
+L = 1.0  # Longitud de la viga (m)
 P = 1.0  # Valor de la carga (N), para normalización
 
 # Slider para posición de la carga puntual
@@ -45,9 +45,10 @@ ax.axvline(a, color="gray", linestyle="--")
 # Línea horizontal en y = 0
 ax.axhline(0, color="black", linestyle="--", linewidth=0.8)
 # Ejes y etiquetas
-ax.set_xlabel("x [m]")
-# ax.set_ylabel("Valor normalizado")
-# ax.grid(True
+ax.set_xlabel("")
+ax.set_ylabel("")
+ax.set_xticks([])
+ax.set_yticks([])
 ax.legend()
 
 
