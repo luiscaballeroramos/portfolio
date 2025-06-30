@@ -38,6 +38,11 @@ st.markdown("---")
 col1, col2 = st.columns(2)
 with col1:
     st.page_link(
+        "pages/app_unit_converter.py",
+        label="Unit Converter",
+        use_container_width=True,
+    )
+    st.page_link(
         "pages/app_beam_forces.py",
         label="Beam Forces Calculator",
         use_container_width=True,
