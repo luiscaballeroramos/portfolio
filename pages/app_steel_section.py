@@ -2,8 +2,8 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
-from steel_calculation.profileproperties import propiedades_ipe
-from steel_calculation.steelprofilesection import profiles
+from examplesportfolio.profileproperties import propiedades_ipe
+from examplesportfolio.steelprofilesection import profiles
 
 
 st.title("Selector de perfiles metálicos")
