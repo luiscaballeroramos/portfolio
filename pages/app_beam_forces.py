@@ -3,6 +3,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Configuración
+if st.button("⬅️ Back to Home"):
+    st.switch_page("main.py")
 st.set_page_config(page_title="Esfuerzos en Viga Biapoyada", layout="wide")
 st.title("🧱 Viga Biapoyada con Carga Puntual Variable")
 

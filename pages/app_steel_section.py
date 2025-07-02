@@ -5,7 +5,8 @@ import matplotlib.patches as patches
 from examplesportfolio.profileproperties import propiedades_ipe
 from examplesportfolio.steelprofilesection import profiles
 
-
+if st.button("⬅️ Back to Home"):
+    st.switch_page("main.py")
 st.title("Selector de perfiles metálicos")
 
 # Desplegable tipo de perfil

@@ -10,7 +10,8 @@ converters = {
     "Time": time,
     "Angle": angle,
 }
-
+if st.button("⬅️ Back to Home"):
+    st.switch_page("main.py")
 st.title("Dynamic Multi-Unit Converter")
 
 # magnitude, input_unit, input_value
