@@ -43,18 +43,13 @@ with col1:
         use_container_width=True,
     )
     st.page_link(
-        "pages/app_unit_converter.py",
-        label="Unit Converter",
-        use_container_width=True,
-    )
-    st.page_link(
-        "pages/app_beam_forces.py",
-        label="Beam Forces Calculator",
-        use_container_width=True,
-    )
-    st.page_link(
         "pages/app_steel_section.py",
         label="Steel Section Calculator",
+        use_container_width=True,
+    )
+    st.page_link(
+        "pages/app_unit_converter.py",
+        label="Unit Converter",
         use_container_width=True,
     )
 with col2:
