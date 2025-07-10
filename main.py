@@ -43,6 +43,11 @@ with col1:
         use_container_width=True,
     )
     st.page_link(
+        "pages/app_pile.py",
+        label="Pile Design",
+        use_container_width=True,
+    )
+    st.page_link(
         "pages/app_steel_section.py",
         label="Steel Section Calculator",
         use_container_width=True,
