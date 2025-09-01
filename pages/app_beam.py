@@ -156,10 +156,10 @@ def draw_support(x, kind):
 
 
 # left support
-if left_support != "Libre":
+if left_support != "Free":
     draw_support(0, left_support)
 # right support
-if right_support != "Libre":
+if right_support != "Free":
     draw_support(length, right_support)
 # middle support (optional)
 if use_middle_support:
@@ -212,10 +212,8 @@ st.markdown("### Calculations")
 def calculate_beam():
     # supports
     supports = []
-    if left_support != "Free":
-        supports.append((0, left_support.lower()))
-    if right_support != "Free":
-        supports.append((length, right_support.lower()))
+    supports.append((0, left_support.lower()))
+    supports.append((length, right_support.lower()))
     if use_middle_support:
         supports.insert(1, (middle_support_position, "simple"))
     # point loads
