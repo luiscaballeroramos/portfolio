@@ -30,5 +30,29 @@ def install_package_from_github(repo_name: str):
 
 
 # loop through the repositories and install them
-for repo in TOKENS.keys():
-    install_package_from_github(repo)
+def install_all_packages(local: bool = False):
+    if local:
+        local_path = os.path.abspath(
+            os.path.join(os.path.dirname(__file__), "../lcrcoding")
+        )
+        subprocess.check_call(
+            [
+                sys.executable,
+                "-m",
+                "pip",
+                "install",
+                "--force-reinstall",
+                "-e",
+                local_path,
+            ]
+        )
+        if local_path not in sys.path:
+            sys.path.insert(0, local_path)
+    else:
+        for repo in TOKENS.keys():
+            if find_spec(repo) is None:
+                install_package_from_github(repo)
+
+
+# for repo in TOKENS.keys():
+#     install_package_from_github(repo)

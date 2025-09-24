@@ -2,134 +2,52 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
-from examplesportfolio.profileproperties import propiedades_ipe
-from examplesportfolio.steelprofilesection import profiles
+from section.ipe import ipeDict
+
+# from section.hd import hdDict
+# from section.he import heDict
+# from section.hea import heaDict
+# from section.heaa import heaaDict
+# from section.heb import hebDict
+# from section.hem import hemDict
+# from section.hl import hlDict
+# from section.hlz import hlzDict
+
+typesDict = {
+    "IPE": ipeDict,
+}
 
 if st.button("⬅️ Back to Home"):
     st.switch_page("main.py")
-st.title("Selector de perfiles metálicos")
+st.title("Steel profile selector")
 
-# Desplegable tipo de perfil
 col1, col2, col3 = st.columns(3)
 with col1:
-    tipo = st.selectbox("Tipo de perfil", list(profiles.keys()))
-    # Desplegable subtipo basado en tipo seleccionado
-    subtipo = st.selectbox("Subtipo de perfil", list(profiles[tipo].keys()))
+    # select type of steel profile
+    typeProfile = st.selectbox("Steel profile type", list(typesDict.keys()))
+    # list of items corresponding to type selected
+    profileName = st.selectbox(
+        "Steel profile item", list(typesDict[typeProfile].keys())
+    )
 with col2:
-    # Mostrar dimensiones en formato lista, sin alineación especial
-    dim = profiles[tipo][subtipo]
-    st.subheader("Dimensiones")
-    for k, v in dim.items():
-        st.text(f"{str(k).rjust(20)}: {v}")
-    st.subheader("Propiedades")
-    if tipo == "I":
-        A, Ixx = propiedades_ipe(dim["h"], dim["b"], dim["tw"], dim["tf"])
-        st.write(f"A: {A:.1f} mm²")
-        st.write(f"Ixx: {Ixx:.1f} mm⁴")
-
-
-def draw_ipe(h, b, tw, tf, r):
-    fig, ax = plt.subplots()
-    color = "lightgrey"
-    # web
-    ax.add_patch(
-        plt.Rectangle(
-            (b / 2 - tw / 2, tf), tw, h - 2 * tf, facecolor=color, edgecolor="none"
-        )
-    )
-    # flanges
-    ax.add_patch(plt.Rectangle((0, 0), b, tf, facecolor=color, edgecolor="none"))
-    ax.add_patch(plt.Rectangle((0, h - tf), b, tf, facecolor=color, edgecolor="none"))
-    # radius corners
-    # bottom left
-    ax.add_patch(
-        plt.Rectangle((b / 2 - tw / 2 - r, tf), r, r, facecolor=color, edgecolor="none")
-    )
-    ax.add_patch(
-        patches.Wedge(
-            center=(b / 2 - tw / 2 - r, tf + r),
-            r=r,
-            theta1=0,
-            theta2=360,
-            facecolor="white",
-            edgecolor="none",
-        )
-    )
-    # bottom right
-    ax.add_patch(
-        plt.Rectangle((b / 2 + tw / 2, tf), r, r, facecolor=color, edgecolor="none")
-    )
-    ax.add_patch(
-        patches.Wedge(
-            center=(b / 2 + tw / 2 + r, tf + r),
-            r=r,
-            theta1=0,
-            theta2=360,
-            facecolor="white",
-            edgecolor="none",
-        )
-    )
-    # top left
-    ax.add_patch(
-        plt.Rectangle(
-            (b / 2 - tw / 2 - r, h - tf - r), r, r, facecolor=color, edgecolor="none"
-        )
-    )
-    ax.add_patch(
-        patches.Wedge(
-            center=(b / 2 - tw / 2 - r, h - tf - r),
-            r=r,
-            theta1=0,
-            theta2=360,
-            facecolor="white",
-            edgecolor="none",
-        )
-    )
-    # top right
-    ax.add_patch(
-        plt.Rectangle(
-            (b / 2 + tw / 2, h - tf - r), r, r, facecolor=color, edgecolor="none"
-        )
-    )
-    ax.add_patch(
-        patches.Wedge(
-            center=(b / 2 + tw / 2 + r, h - tf - r),
-            r=r,
-            theta1=0,
-            theta2=360,
-            facecolor="white",
-            edgecolor="none",
-        )
-    )
-
-    # Cotas básicas
-    ax.annotate(
-        f"h={h}mm\ntw={tw}mm",
-        xy=(b / 2 + tw, h / 2),
-        # xytext=(b + 10, h / 2),
-        # arrowprops=dict(arrowstyle="-["),
-    )
-    ax.annotate(
-        f"b={b}mm\ntw={tw}mm",
-        xy=(0, tf),
-        # xytext=(b / 2, -10),
-        # arrowprops=dict(arrowstyle="->"),
-    )
-    ax.set_xlim(-20, b + 30)
-    ax.set_ylim(-20, h + 20)
-    ax.set_aspect("equal")
-    ax.axis("off")
-    return fig
-
+    # show dimensions and properties
+    profile = typesDict[typeProfile][profileName]
+    # for k, v in dim.items():
+    #     st.text(f"{str(k).rjust(20)}: {v}")
+    st.subheader("Properties")
+    xCentroid, yCentroid = profile.centroid()
+    area = profile.area()
+    inertiaxxTotal, inertiayyTotal, inertiaxyTotal = profile.inertia()
+    ix, iy = profile.radii_of_gyration()
+    st.write(f"x centroid: {xCentroid:.2f} mm")
+    st.write(f"y centroid: {yCentroid:.2f} mm")
+    st.write(f"A: {area:.2f} mm²")
+    st.write(f"Ixx: {inertiaxxTotal:.0f} mm⁴")
+    st.write(f"Iyy: {inertiayyTotal:.0f} mm⁴")
+    st.write(f"ix: {ix:.2f} mm")
+    st.write(f"iy: {iy:.2f} mm")
 
 with col3:
-    if tipo == "I":
-        r = dim.get("r", 0)
-        fig = draw_ipe(dim["h"], dim["b"], dim["tw"], dim["tf"], r)
-        st.pyplot(fig)
-    elif tipo == "U":
-        st.warning("Dibujo para perfil UPN aún no implementado.")
-    elif tipo == "L":
-        st.warning("Dibujo para perfil ángulo aún no implementado.")
-    else:
-        st.write("Dibujo no disponible para este tipo aún.")
+    st.subheader("Dimensions (mm)")
+    fig, ax = profile.plot(show=False)
+    st.pyplot(fig)

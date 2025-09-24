@@ -1,5 +1,7 @@
-import install_private_packages
+from install_private_packages import install_all_packages
 
+local = False
+install_all_packages(local=local)
 import streamlit as st
 
 # Configuración inicial
