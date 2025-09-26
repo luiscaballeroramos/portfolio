@@ -3,7 +3,6 @@ import sys
 import subprocess
 from importlib.util import find_spec
 from dotenv import load_dotenv
-import pkg_resources
 import logging
 
 TOKENS = {"lcrcode": ("GITHUB_TOKEN", "GITHUB_USER")}
