@@ -16,9 +16,9 @@ st.set_page_config(page_title="Portfolio Luis Caballero Ramos", layout="wide")
 # Hero section
 st.markdown(
     """
-    <div style="text-align: center; padding: 2em; background: linear-gradient(to left, #0e1117, #1a1f29); border-radius: 12px; margin-bottom: 2em;">
-        <h1 style="color: #fafafa; margin-bottom: 0.2em;">Luis Caballero Ramos</h1>
-        <p style="color: #aaaaaa; font-size: 1.2em;">Structural Engineer • Developer</p>
+    <div style="text-align: center; padding: 2em; background-color: var(--background-color); border-radius: 12px; margin-bottom: 2em;">
+        <h1 style="color: var(--text-color); margin-bottom: 0.2em;">Luis Caballero Ramos</h1>
+        <p style="color: var(--secondary-text-color); font-size: 1.2em;">Structural Engineer • Developer</p>
     </div>
     """,
     unsafe_allow_html=True,
@@ -57,9 +57,10 @@ def render_app_cards(apps):
                 f"""
             <style>
             div[data-testid^="stPageLink"] > div {{
-                border: 2px solid #777777;
+                border: 2px solid var(--text-color);
                 border-radius: 16px;
-                background-color: #0e1117;
+                background-color: var(--background-color);
+                color: inherit;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -73,6 +74,7 @@ def render_app_cards(apps):
                 margin: auto;
                 width: 100%;
                 text-align: center;
+                color: inherit;
                 display: flex !important;
                 align-items: center !important;
                 justify-content: center !important;
