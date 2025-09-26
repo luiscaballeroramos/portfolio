@@ -2,16 +2,13 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
+from main import ENGINEERING_UTILITIES
 from section.ipe import ipeDict
 
-# from section.hd import hdDict
-# from section.he import heDict
-# from section.hea import heaDict
-# from section.heaa import heaaDict
-# from section.heb import hebDict
-# from section.hem import hemDict
-# from section.hl import hlDict
-# from section.hlz import hlzDict
+
+appName = "Steel Section Properties"
+app = ENGINEERING_UTILITIES[appName]
+st.set_page_config(page_title=appName, page_icon="📐")
 
 typesDict = {
     "IPE": ipeDict,
@@ -19,7 +16,9 @@ typesDict = {
 
 if st.button("⬅️ Back to Home"):
     st.switch_page("main.py")
-st.title("Steel profile selector")
+st.title(appName)
+st.write(app["desc"])
+st.markdown("---")
 
 col1, col2, col3 = st.columns(3)
 with col1:

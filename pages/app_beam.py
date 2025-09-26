@@ -3,7 +3,12 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import numpy as np
 
+from main import STRUCTURAL_TOOLS
 from structuralelement.beam2d import Beam2D
+
+appName = "Beam Model"
+app = STRUCTURAL_TOOLS[appName]
+st.set_page_config(page_title=appName, page_icon="🛠️")
 
 # Aumentar el grosor de líneas del hatch
 plt.rcParams["hatch.linewidth"] = 2.0
@@ -15,6 +20,12 @@ def reset_variable(variableName, default_value):
 
 
 # --- Beam Parameters ---
+if st.button("⬅️ Back to Home"):
+    st.switch_page("main.py")
+st.title(appName)
+st.write(app["desc"])
+st.markdown("---")
+
 st.title("Bernoulli Beam Model (V & M)")
 with st.expander("Beam Parameters"):
     default_E_GPa = "210.0"  # default young modulus in GPa

@@ -4,6 +4,12 @@ import math
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
+from main import STRUCTURAL_TOOLS
+
+appName = "Pile Model"
+app = STRUCTURAL_TOOLS[appName]
+st.set_page_config(page_title=appName, page_icon="🛠️")
+
 
 # --- DATACLASSES ---
 @dataclass
@@ -134,7 +140,12 @@ def plot_pile_and_soil(geo: PileGeometry, soil_layers: list[SoilLayer]):
 
 
 # --- STREAMLIT APP ---
-st.title("Steel Pile Design (Eurocode)")
+
+if st.button("⬅️ Back to Home"):
+    st.switch_page("main.py")
+st.title(appName)
+st.write(app["desc"])
+st.markdown("---")
 
 st.sidebar.header("Pile Geometry")
 L = st.sidebar.number_input("Length [m]", 1.0, 50.0, 10.0, step=0.5)
