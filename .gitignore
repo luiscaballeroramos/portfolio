@@ -7,3 +7,4 @@ venv/
 */.venv/
 external_packages/
 *egg-info/
+*borrar*
