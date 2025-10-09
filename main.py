@@ -41,21 +41,21 @@ st.markdown(
 # --- Apps grouped into categories ---
 ENGINEERING_UTILITIES = {
     "Unit Converter": {
-        "path": "pages/app_unit_converter.py",
+        "page": "pages/app_unit_converter.py",
         "desc": "Convert engineering units for different magnitudes",
     },
     "Steel Section Properties": {
-        "path": "pages/app_steel_section.py",
+        "page": "pages/app_steel_section.py",
         "desc": "Cross-section properties for standard steel profiles",
     },
 }
 STRUCTURAL_TOOLS = {
     "Beam Model": {
-        "path": "pages/app_beam.py",
+        "page": "pages/app_beam.py",
         "desc": "Structural beam analysis and visualization with Bernoulli Beam Model (V & M)",
     },
     "Pile Model": {
-        "path": "pages/app_pile.py",
+        "page": "pages/app_pile.py",
         "desc": "Design and calculation of a single pile including geotechnical layers",
     },
 }
@@ -65,7 +65,7 @@ def render_app_cards(apps):
     cols = st.columns(2)
     for i, (appName, app) in enumerate(apps.items()):
         with cols[i % 2]:
-            st.page_link(app["path"], label=appName, use_container_width=True)
+            st.page_link(app["page"], label=appName, use_container_width=True)
 
     # CSS centrado, limpio y estable
     st.markdown(
@@ -142,7 +142,7 @@ render_app_cards(STRUCTURAL_TOOLS)
 #                 st.caption(app["desc"])
 #                 # Run the page inline
 #                 try:
-#                     runpy.run_path(app["path"])
+#                     runpy.run_path(app["page"])
 #                 except Exception as e:
 #                     st.error(f"⚠️ Could not load {appName}: {e}")
 
