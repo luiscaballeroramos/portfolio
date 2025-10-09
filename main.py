@@ -11,14 +11,28 @@ if "packages_installed" not in st.session_state:
 
 
 # Page config
-st.set_page_config(page_title="Portfolio Luis Caballero Ramos", layout="wide")
+st.set_page_config(page_title="Portfolio Luis Caballero Ramos", layout="centered")
 
 # Hero section
 st.markdown(
     """
-    <div style="text-align: center; padding: 2em; background-color: var(--background-color); border-radius: 12px; margin-bottom: 2em;">
-        <h1 style="color: var(--text-color); margin-bottom: 0.2em;">Luis Caballero Ramos</h1>
-        <p style="color: var(--secondary-text-color); font-size: 1.2em;">Structural Engineer • Developer</p>
+    <div style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5em;
+        padding: 2em;
+        background-color: var(--background-color);
+        border-radius: 12px;
+        margin-bottom: 2em;
+    ">
+        <img src="https://github.com/luiscaballeroramos.png"
+             alt="Luis Caballero Ramos"
+             style="width:120px; height:120px; border-radius:50%; box-shadow:0px 3px 10px rgba(0,0,0,0.15);">
+        <div style="text-align: left;">
+            <h1 style="color: var(--text-color); margin-bottom: 0.2em;">Luis Caballero Ramos</h1>
+            <p style="color: var(--secondary-text-color); font-size: 1.2em;">Structural Engineer • Developer</p>
+        </div>
     </div>
     """,
     unsafe_allow_html=True,
@@ -52,44 +66,61 @@ def render_app_cards(apps):
     for i, (appName, app) in enumerate(apps.items()):
         with cols[i % 2]:
             st.page_link(app["path"], label=appName, use_container_width=True)
-            # Improved CSS for perfect horizontal centering
-            st.markdown(
-                f"""
-            <style>
-            div[data-testid^="stPageLink"] > div {{
-                border: 2px solid var(--text-color);
-                border-radius: 16px;
-                background-color: var(--background-color);
-                color: inherit;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                height: 40px;
-                font-size: 1.5em;
-                font-weight: bold;
-                transition: transform 0.2s, box-shadow 0.2s;
-            }}
-            div[data-testid^="stPageLink"] > div > span {{
-                margin: auto;
-                width: 100%;
-                text-align: center;
-                color: inherit;
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-            }}
-            </style>
-            """,
-                unsafe_allow_html=True,
-            )
+
+    # CSS centrado, limpio y estable
+    st.markdown(
+        """
+        <style>
+        /* Estilo general de las tarjetas de enlace */
+        div[data-testid^="stPageLink"] {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border: 2px solid var(--text-color, #bbb);
+            border-radius: 16px;
+            background-color: var(--background-color);
+            color: inherit;
+            height: 35px;
+            font-size: 1.3em;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            box-shadow: 0px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        /* Efecto hover */
+        div[data-testid^="stPageLink"]:hover {
+            transform: translateY(-3px);
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.15);
+        }
+
+        /* Centrado perfecto del texto dentro del enlace */
+        div[data-testid^="stPageLink"] a {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: inherit;
+            text-decoration: none;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
 
 
 # --- Display apps ---
-st.subheader("📐 Engineering utilities")
+st.markdown(
+    '<h2 style="text-align: center;">📐 Engineering utilities</h2>',
+    unsafe_allow_html=True,
+)
 render_app_cards(ENGINEERING_UTILITIES)
 
-st.subheader("🛠️ Structural Tools")
+st.markdown(
+    '<h2 style="text-align: center;">🛠️ Structural Tools</h2>',
+    unsafe_allow_html=True,
+)
 render_app_cards(STRUCTURAL_TOOLS)
 
 # # Combine everything into one list of categories
