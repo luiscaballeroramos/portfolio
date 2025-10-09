@@ -65,7 +65,7 @@ def render_app_cards(apps):
     cols = st.columns(2)
     for i, (appName, app) in enumerate(apps.items()):
         with cols[i % 2]:
-            st.page_link(app["path"], label=appName, use_container_width=True)
+            st.page_link(app["path"], label=appName)
 
     # CSS centrado, limpio y estable
     st.markdown(
