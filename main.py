@@ -168,3 +168,4 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
+# BUG: al hacer reboot al streamlit, cuando se hace click en la primera app, se genera una previsualizacion que segun parece no se puede quitar. Si se hace click en otra app, desaparece.
