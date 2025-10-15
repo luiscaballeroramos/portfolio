@@ -19,5 +19,5 @@ jobs:
                --retry 3 \
                --retry-delay 5 \
                --fail \
-               https://luiscaballeroramos.streamlit.app/ \
+               https://luiscaballeroramos.streamlit.app/?embed=true \
                -o /dev/null
