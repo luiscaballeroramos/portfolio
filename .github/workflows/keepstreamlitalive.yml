@@ -12,22 +12,9 @@ jobs:
     steps:
       - name: Ping Streamlit app using wget
         run: |
-<<<<<<< HEAD
-          echo "Pinging Streamlit app..."
-          curl -L -A "Mozilla/5.0 (compatible; GitHubActionBot/1.0)" \
-               --max-redirs 10 \
-               --connect-timeout 15 \
-               --retry 3 \
-               --retry-delay 5 \
-               --fail \
-               https://luiscaballeroramos.streamlit.app/?embed=true \
-               -o /dev/null
-=======
           echo "Pinging Streamlit app with wget..."
           wget --quiet --tries=3 --timeout=20 \
                --user-agent="Mozilla/5.0 (compatible; GitHubActionBot/1.0)" \
                --no-cache \
                https://luiscaballeroramos.streamlit.app/?embed=true \
                -O /dev/null
-
->>>>>>> f42a240fc3c0e7e4081b4c3b681247378a3d4c92
