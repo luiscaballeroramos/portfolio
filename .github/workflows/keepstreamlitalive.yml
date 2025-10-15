@@ -10,7 +10,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Send GET request to Streamlit app
+      - name: Ping Streamlit app (follow redirects safely)
         run: |
           echo "Pinging Streamlit app..."
-          curl -L --silent --show-error https://luiscaballeroramos.streamlit.app/ > /dev/null
+          curl -L -A "Mozilla/5.0 (compatible; GitHubActionBot/1.0)" \
+               --max-redirs 10 \
+               --connect-timeout 15 \
+               --retry 3 \
+               --retry-delay 5 \
+               --fail \
+               https://luiscaballeroramos.streamlit.app/ \
+               -o /dev/null
